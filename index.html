@@ -111,5 +111,32 @@
       <pre id="json-display"></pre>
     </div>
   </div>
+  <!-- JavaScript to handle form submission and display JSON -->
+  <script>
+    document.getElementById('shipping-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      let address = document.getElementById('address').value;
+      let city = document.getElementById('city').value;
+      let state = document.getElementById('state').value;
+      let zip = document.getElementById('zip').value;
+      
+      if (!address || !city || !state || !zip) {
+        alert("All fields are required.");
+        return;
+      }
+      
+      let shippingDetails = {
+        address: address,
+        city: city,
+        state: state,
+        zip: zip,
+        carrier: document.getElementById('carrier').value,
+        method: document.getElementById('method').value
+      };
+
+      document.getElementById('json-display').textContent = JSON.stringify(shippingDetails, null, 2);
+    });
+  </script>
 </body>
 </html>
